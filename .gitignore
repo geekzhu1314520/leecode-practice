@@ -31,3 +31,4 @@ hs_err_pid*
 .idea/modules.xml
 .idea/workspace.xml
 leecode-practice.iml
+/.idea/
