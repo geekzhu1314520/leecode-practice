@@ -13,7 +13,6 @@ public class Subsets {
             return result;
         }
 
-        Arrays.sort(nums);
         dfs(nums, 0, nums.length, new ArrayDeque<>(), result);
 
         return result;
