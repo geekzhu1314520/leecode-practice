@@ -1,45 +1,47 @@
 package bfsdfs;
 
-import java.util.ArrayList;
-import java.util.List;
+import apple.laf.JRSUIUtils;
+
+import java.util.*;
 
 /**
  * https://leetcode-cn.com/problems/find-largest-value-in-each-tree-row/
  *
  * @author bluze
  */
-public class FindLargestValueInEachTreeRow {
+public class FindLargestValueInEachTreeRow01 {
 
     public List<Integer> largestValues(TreeNode root) {
         List<Integer> result = new ArrayList<>();
 
-        List<List<Integer>> all = new ArrayList<>();
-        dfs(all, 0, root);
-        for (List<Integer> each : all) {
+        if (root == null) {
+            return result;
+        }
 
-            int max = each.get(0);
-            for (int i = 1; i < each.size(); i++) {
-                if(max < each.get(i)){
-                    max = each.get(i);
+        Deque<TreeNode> deque = new ArrayDeque<>();
+        deque.addLast(root);
+
+        while (!deque.isEmpty()) {
+            int size = deque.size();
+
+            int max = Integer.MIN_VALUE;
+            for (int i = 0; i < size; i++) {
+                TreeNode node = deque.poll();
+                max = Math.max(max, node.val);
+
+                if (node.left != null) {
+                    deque.addLast(node.left);
+                }
+
+                if (node.right != null) {
+                    deque.addLast(node.right);
                 }
             }
+
             result.add(max);
         }
+
         return result;
-    }
-
-    private void dfs(List<List<Integer>> all, int level, TreeNode node) {
-        if (node == null) {
-            return;
-        }
-        if (all.size() < level + 1) {
-            all.add(new ArrayList<>());
-        }
-
-        all.get(level).add(node.val);
-
-        dfs(all, level + 1, node.left);
-        dfs(all, level + 1, node.right);
     }
 
     public static void main(String[] args) {
@@ -58,7 +60,7 @@ public class FindLargestValueInEachTreeRow {
         node2.left = node5;
         node2.right = node6;
 
-        FindLargestValueInEachTreeRow treeRow = new FindLargestValueInEachTreeRow();
+        FindLargestValueInEachTreeRow01 treeRow = new FindLargestValueInEachTreeRow01();
         System.out.println(treeRow.largestValues(node));
     }
 
