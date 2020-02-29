@@ -38,8 +38,7 @@ public class LetterCombinationsOfAPhoneNumber {
             return;
         }
 
-        String digit = digits.substring(0, 1);
-        String letters = map.get(digit);
+        String letters = map.get(digits.substring(0, 1));
         for (int i = 0; i < letters.length(); i++) {
             String letter = letters.substring(i, i + 1);
             backtrack(combination + letter, digits.substring(1), result);
