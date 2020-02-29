@@ -1,12 +1,14 @@
-package bfs;
+package bfsdfs;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 /**
  * https://leetcode-cn.com/problems/binary-tree-level-order-traversal
  */
-public class BinaryTreeLevelOrderTraversal {
+public class BinaryTreeLevelOrderTraversal01 {
 
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
@@ -14,24 +16,28 @@ public class BinaryTreeLevelOrderTraversal {
             return result;
         }
 
-        dfs(result, root, 0);
+        Deque<TreeNode> deque = new ArrayDeque<>();
+        deque.addLast(root);
+
+        while (!deque.isEmpty()) {
+            List<Integer> each = new ArrayList<>();
+            int levelSize = deque.size();
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode node = deque.poll();
+                each.add(node.val);
+
+                if (node.left != null) {
+                    deque.addLast(node.left);
+                }
+
+                if (node.right != null) {
+                    deque.addLast(node.right);
+                }
+            }
+            result.add(each);
+        }
+
         return result;
-    }
-
-    private void dfs(List<List<Integer>> result, TreeNode node, int level) {
-
-        if (node == null) {
-            return;
-        }
-
-        if (result.size() < level + 1) {
-            result.add(new ArrayList<>());
-        }
-
-        result.get(level).add(node.val);
-
-        dfs(result, node.left, level + 1);
-        dfs(result, node.right, level + 1);
     }
 
 
@@ -57,7 +63,7 @@ public class BinaryTreeLevelOrderTraversal {
         node2.left = node3;
         node2.right = node4;
 
-        BinaryTreeLevelOrderTraversal orderTraversal = new BinaryTreeLevelOrderTraversal();
+        BinaryTreeLevelOrderTraversal01 orderTraversal = new BinaryTreeLevelOrderTraversal01();
         System.out.println(orderTraversal.levelOrder(root));
 
     }

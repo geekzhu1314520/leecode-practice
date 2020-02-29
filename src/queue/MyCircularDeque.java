@@ -1,4 +1,4 @@
-package queue;
+package deque;
 
 /**
  * https://leetcode-cn.com/problems/design-circular-deque/
