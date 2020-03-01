@@ -1,5 +1,8 @@
 package greedy;
 
+/**
+ * https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/
+ */
 public class BestTimeToBuySellStock {
 
     public int maxProfit(int[] prices) {
