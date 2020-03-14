@@ -15,13 +15,9 @@ public class Triangle02 {
         }
 
         int m = triangle.size();
-        int[] dp = new int[m];
+        int[] dp = new int[m + 1];
 
-        for (int i = 0; i < m; i++) {
-            dp[i] = triangle.get(m - 1).get(i);
-        }
-
-        for (int i = m - 2; i >= 0; i--) {
+        for (int i = m - 1; i >= 0; i--) {
             for (int j = 0; j < triangle.get(i).size(); j++) {
                 dp[j] = triangle.get(i).get(j) + Math.min(dp[j], dp[j + 1]);
             }
