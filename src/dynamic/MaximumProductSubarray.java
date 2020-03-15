@@ -1,5 +1,8 @@
 package dynamic;
 
+/**
+ * https://leetcode-cn.com/problems/maximum-product-subarray
+ */
 public class MaximumProductSubarray {
 
     public int maxProduct(int[] nums) {
