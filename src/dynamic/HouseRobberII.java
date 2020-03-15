@@ -21,6 +21,7 @@ public class HouseRobberII {
         dp[1][0] = nums[1];
         dp[1][1] = nums[0];
 
+        // dp[i][0]不带第一个节点；dp[i][1]带第一个节点
         int result = Math.max(dp[1][0], dp[1][1]);
         for (int i = 2; i < nums.length; i++) {
             if ((i + 1) % nums.length == 0) {
